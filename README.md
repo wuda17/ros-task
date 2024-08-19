@@ -19,7 +19,7 @@ Please read through [this](https://www.overleaf.com/read/dmgrrcmpkbkq#211e69) do
 
 ```bash
 ./scripts/deploy/devel.sh # To enter the docker container
-ros2 launch limo_simulation limo.launch.py
+ros2 launch limo_simulation limo.launch.py # To launch the simulator
 ```
 
 ### What do I edit?
