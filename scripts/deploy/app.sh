@@ -11,11 +11,11 @@ ros2 launch limo_control limo_controller_sim.launch.py &
 SIM_PID=$!
 
 # Wait for sim to start
-sleep 3
+sleep 4
 
 # Publish 2D goal pose
-X=1.0
-Y=2.0
+X=25.0
+Y=30.0
 # Given THETA=30 deg
 QZ=0.259  # sin(THETA/2)
 QW=0.966  # cos(THETA/2)
