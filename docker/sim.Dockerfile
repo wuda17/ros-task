@@ -7,11 +7,13 @@ RUN apt-get update && apt-get upgrade -y
 ENV NVIDIA_VISIBLE_DEVICES=all
 ENV NVIDIA_DRIVER_CAPABILITIES=all
 
-RUN apt-get install --no-install-recommends -y \
+RUN apt-get update && apt-get install --no-install-recommends -y \
     software-properties-common \
     vim \
     python3-pip \
-    python3-tk
+    python3-tk \
+    curl \ 
+    ca-certificates
 
 # Added updated mesa drivers for integration with cpu - https://github.com/ros2/rviz/issues/948#issuecomment-1428979499
 RUN add-apt-repository ppa:kisak/kisak-mesa && \
@@ -33,7 +35,8 @@ ENV WORKSPACE_PATH=/root/workspace
 COPY workspace/ $WORKSPACE_PATH/src/
 
 RUN rosdep update && cd $WORKSPACE_PATH && \
-    rosdep install --from-paths src -y --ignore-src
+    rosdep install --from-paths src -y --ignore-src --rosdistro humble --os=ubuntu:jammy || \
+    apt-get install -y --fix-missing
 
 COPY scripts/setup/ /root/scripts/setup
 RUN /root/scripts/setup/workspace.sh
