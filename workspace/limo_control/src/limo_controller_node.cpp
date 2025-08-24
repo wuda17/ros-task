@@ -37,6 +37,10 @@ namespace limo
         angular_error_msg.data = error.theta;
         angular_error_pub_->publish(angular_error_msg);
 
+        RCLCPP_INFO(this->get_logger(), "Error: (%.2f, %.2f)",
+                    l2_error_msg.data,
+                    angular_error_msg.data);
+
         UnicycleControlInput u = controller_.error_to_control_input(error);
 
         geometry_msgs::msg::Twist twist_msg{};
@@ -63,9 +67,9 @@ namespace limo
 
     void LimoControllerNode::odom_callback(const nav_msgs::msg::Odometry::SharedPtr msg)
     {
-        RCLCPP_INFO(this->get_logger(), "Odom position: (%.2f, %.2f)",
-                    msg->pose.pose.position.x,
-                    msg->pose.pose.position.y);
+        RCLCPP_DEBUG(this->get_logger(), "Odom position: (%.2f, %.2f)",
+                     msg->pose.pose.position.x,
+                     msg->pose.pose.position.y);
 
         UnicycleKinematicState odom;
         odom.x = msg->pose.pose.position.x;
