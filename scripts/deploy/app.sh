@@ -23,7 +23,5 @@ QW=0.966  # cos(THETA/2)
 ros2 topic pub /goal_pose geometry_msgs/msg/PoseStamped \
 "{header: {frame_id: 'map'}, pose: {position: {x: $X, y: $Y, z: 0.0}, orientation: {x: 0.0, y: 0.0, z: $QZ, w: $QW}}}" -1
 
-ros2 run rqt_graph rqt_graph /l2_error/data /angular_error/data
-
 # Optional: wait for sim/controller
 wait $SIM_PID
