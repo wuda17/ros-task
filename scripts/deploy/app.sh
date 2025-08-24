@@ -25,5 +25,7 @@ ros2 topic pub /goal_pose geometry_msgs/msg/PoseStamped \
 
 ros2 run rqt_plot rqt_plot /l2_error /angular_error
 
+ros2 topic echo /l2_error
+
 # Optional: wait for sim/controller
 wait $SIM_PID
