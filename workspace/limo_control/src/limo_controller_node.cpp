@@ -35,7 +35,7 @@ namespace limo
         l2_error_pub_->publish(l2_error_msg);
         std_msgs::msg::Float64 angular_error_msg{};
         angular_error_msg.data = error.theta;
-        angular_pub_->publish(angular_error_msg);
+        angular_error_pub_->publish(angular_error_msg);
 
         UnicycleControlInput u = controller_.error_to_control_input(error);
 
