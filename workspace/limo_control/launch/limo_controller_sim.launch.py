@@ -32,6 +32,15 @@ def generate_launch_description():
         parameters=[{"use_sim_time": use_sim_time}],
     )
 
+    # Launch rqt_plot after sim/controller
+    rqt_plot_node = Node(
+        package="rqt_plot",
+        executable="rqt_plot",
+        name="rqt_plot",
+        output="screen",
+        # Cannot pass topics as arguments here; just open GUI
+    )
+
     # Combine everything into the LaunchDescription
     return LaunchDescription(
         [
@@ -40,5 +49,6 @@ def generate_launch_description():
             ),
             sim,
             controller_node,
+            rqt_plot_node,
         ]
     )
