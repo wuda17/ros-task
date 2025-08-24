@@ -18,8 +18,8 @@ namespace limo
         goal_sub_ = this->create_subscription<geometry_msgs::msg::PoseStamped>(
             "goal_pose", 10, std::bind(&LimoControllerNode::goal_callback, this, std::placeholders::_1));
 
-        l2_error_pub_ = this->create_publisher<std_msgs::msg::Float64>("l2_error", 10);
-        angular_error_pub_ = this->create_publisher<std_msgs::msg::Float64>("angular_error", 10);
+        l2_error_pub_ = this->create_publisher<std_msgs::msg::Float32>("l2_error", 10);
+        angular_error_pub_ = this->create_publisher<std_msgs::msg::Float32>("angular_error", 10);
     }
 
     void LimoControllerNode::control_loop()
@@ -30,10 +30,10 @@ namespace limo
         UnicycleKinematicState error = compute_error_body_frame();
 
         // Publish error diagnostics
-        std_msgs::msg::Float64 l2_error_msg{};
+        std_msgs::msg::Float32 l2_error_msg{};
         l2_error_msg.data = std::sqrt(error.x * error.x + error.y * error.y);
         l2_error_pub_->publish(l2_error_msg);
-        std_msgs::msg::Float64 angular_error_msg{};
+        std_msgs::msg::Float32 angular_error_msg{};
         angular_error_msg.data = error.theta;
         angular_error_pub_->publish(angular_error_msg);
 

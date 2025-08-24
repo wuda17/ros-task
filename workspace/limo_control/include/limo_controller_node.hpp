@@ -6,7 +6,7 @@
 #include "geometry_msgs/msg/twist.hpp"
 #include "geometry_msgs/msg/pose_stamped.hpp"
 #include "nav_msgs/msg/odometry.hpp"
-#include <std_msgs/msg/float64.hpp>
+#include <std_msgs/msg/float32.hpp>
 
 #include "unicycle_model.hpp"
 
@@ -31,8 +31,8 @@ namespace limo
         rclcpp::TimerBase::SharedPtr timer_;
 
         // For error diagnostics
-        rclcpp::Publisher<std_msgs::msg::Float64>::SharedPtr l2_error_pub_;
-        rclcpp::Publisher<std_msgs::msg::Float64>::SharedPtr angular_error_pub_;
+        rclcpp::Publisher<std_msgs::msg::Float32>::SharedPtr l2_error_pub_;
+        rclcpp::Publisher<std_msgs::msg::Float32>::SharedPtr angular_error_pub_;
 
         // Internal state
         UnicycleKinematicState goal_state_;
