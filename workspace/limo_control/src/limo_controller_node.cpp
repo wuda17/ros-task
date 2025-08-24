@@ -37,9 +37,9 @@ namespace limo
         angular_error_msg.data = error.theta;
         angular_error_pub_->publish(angular_error_msg);
 
-        RCLCPP_INFO(this->get_logger(), "Error: (%.2f, %.2f)",
-                    l2_error_msg.data,
-                    angular_error_msg.data);
+        RCLCPP_DEBUG(this->get_logger(), "Error: (%.2f, %.2f)",
+                     l2_error_msg.data,
+                     angular_error_msg.data);
 
         UnicycleControlInput u = controller_.error_to_control_input(error);
 
