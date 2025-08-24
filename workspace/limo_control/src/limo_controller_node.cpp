@@ -2,7 +2,7 @@
 
 namespace limo
 {
-    LimoControllerNode::LimoControllerNode() : Node("limo_controller"), Node("limo_controller"),
+    LimoControllerNode::LimoControllerNode() : Node("limo_controller"),
                                                controller_(1.0, 2.0, -0.5, 1.0, 1.0)
     {
         // Publish new control inputs on a timer
@@ -18,8 +18,8 @@ namespace limo
         goal_sub_ = this->create_subscription<geometry_msgs::msg::PoseStamped>(
             "goal_pose", 10, std::bind(&LimoControllerNode::goal_callback, this, std::placeholders::_1));
 
-        l2_error_pub_ = this->create_publisher<std_msgs::msg::Float64::Twist>("l2_error", 10);
-        angular_error_pub_ = this->create_publisher<std_msgs::msg::Float64::Twist>("angular_error", 10);
+        l2_error_pub_ = this->create_publisher<std_msgs::msg::Float64>("l2_error", 10);
+        angular_error_pub_ = this->create_publisher<std_msgs::msg::Float64>("angular_error", 10);
     }
 
     void LimoControllerNode::control_loop()
