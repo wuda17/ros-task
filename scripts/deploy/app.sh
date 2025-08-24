@@ -1,4 +1,4 @@
-#bash
+#!/bin/bash
 
 # Launch Limo Controller in Sim
 ros2 launch limo_control limo_controller_sim.launch.py
